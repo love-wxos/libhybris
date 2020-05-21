@@ -130,7 +130,7 @@ void jpeg_data_cb(void* data, uint32_t data_size, void* context)
 	int fd = open(fn, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
 	if(fd < 0)
 	    return;
-	TEMP_FAILURE_RETRY(write(fd, data, data_size));
+	//TEMP_FAILURE_RETRY(write(fd, data, data_size));
 	close(fd);
 	shot_counter++;
 
