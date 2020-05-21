@@ -48,6 +48,8 @@ static EGLDisplay  (*_eglGetDisplay)(EGLNativeDisplayType display_id) = NULL;
 static EGLBoolean  (*_eglTerminate)(EGLDisplay dpy) = NULL;
 
 static const char *  (*_eglQueryString)(EGLDisplay dpy, EGLint name) = NULL;
+static EGLBoolean  (*_eglGetConfigAttrib)(EGLDisplay dpy, EGLConfig config,
+		EGLint attribute, EGLint *value) = NULL;
 
 static EGLSurface  (*_eglCreateWindowSurface)(EGLDisplay dpy, EGLConfig config,
 		EGLNativeWindowType win,
