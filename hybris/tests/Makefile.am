@@ -16,10 +16,21 @@ bin_PROGRAMS = \
 	test_opencl \
 	test_wifi \
 	test_hwcomposer \
-	test_nfc
+	test_nfc \
+	test_dlopen
+
+
+test_dlopen_SOURCES = test_dlopen.c
+test_dlopen_CFLAGS = \
+	-I$(top_srcdir)/include \
+	-I$(top_srcdir)/hybris/include \
+	-I$(top_srcdir)/include/android
+test_dlopen_LDADD = \
+	$(top_builddir)/common/libhybris-common.la \
+	$(top_builddir)/hardware/libhardware.la
 
 test_audio_SOURCES = test_audio.c
-test_audio_CFLAGS = \
+test_audio_CFLAGS = -std=c99\
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/include/android
 test_audio_LDADD = \
@@ -356,3 +367,82 @@ test_opencl_CFLAGS = \
 test_opencl_LDADD = \
 	$(top_builddir)/common/libhybris-common.la \
 	$(top_builddir)/opencl/libOpenCL.la
+<<<<<<< .mine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+
+test_hwc2_SOURCES = test_hwc2.cpp
+test_hwc2_CXXFLAGS = \
+	-I$(top_srcdir)/include \
+	$(ANDROID_HEADERS_CFLAGS) \
+	-I$(top_srcdir)/common \
+	-I$(top_srcdir)/egl/platforms/common \
+	-I$(top_srcdir)/egl/platforms/hwcomposer \
+	-I$(top_srcdir)/libsync \
+	-std=gnu++11
+
+if HAS_ANDROID_10_0_0
+test_hwc2_CXXFLAGS += \
+        -DHAS_HWCOMPOSER2_HEADERS=0
+else
+if HAS_HWCOMPOSER2_HEADERS
+test_hwc2_CXXFLAGS += \
+        -DHAS_HWCOMPOSER2_HEADERS=1
+else
+test_hwc2_CXXFLAGS += \
+        -DHAS_HWCOMPOSER2_HEADERS=0
+endif
+endif
+
+
+
+if HAS_ANDROID_7_0_0
+test_hwc2_LDADD = \
+        -lm \
+        $(top_builddir)/common/libhybris-common.la \
+	$(top_builddir)/egl/platforms/hwcomposer/libhybris-hwcomposerwindow.la \
+	$(top_builddir)/egl/platforms/common/libhybris-eglplatformcommon.la \
+	$(top_builddir)/egl/libEGL.la \
+	$(top_builddir)/glesv2/libGLESv2.la \
+	$(top_builddir)/libsync/libsync.la \
+	$(top_builddir)/hwc2/libhwc2.la
+endif
+
+>>>>>>> .theirs
